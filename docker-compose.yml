@@ -1,0 +1,17 @@
+version: "2"
+services:
+  equipment:
+    image: openlmismz/equipment
+    links:
+      - db
+      - log
+    ports:
+      - "8080"
+    env_file: .env
+  db:
+    image: openlmis/postgres:9.6
+    env_file: .env
+  log:
+    image: openlmis/rsyslog:1
+    volumes:
+      - '../logs/equipment:/var/log'
